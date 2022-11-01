@@ -23,6 +23,8 @@ public class Player : MonoBehaviour
     private float _speedBoost = 2f;
     [SerializeField]
     private GameObject shieldVisualizer;
+    [SerializeField]
+    private int _score;
 
 
 
@@ -132,4 +134,14 @@ public class Player : MonoBehaviour
         }
 
     }
+
+
+    public void AddScore()
+    {
+        _score += 10;
+    }
+
+
+    //method to add 10 to score 
+    //Communicate to UI to update the score
 }

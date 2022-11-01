@@ -39,6 +39,8 @@ public class Enemy : MonoBehaviour
 
         {
             Destroy(other.gameObject);
+
+            //add 10 to score 
             Destroy(this.gameObject);
         }
 
