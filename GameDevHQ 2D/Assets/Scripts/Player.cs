@@ -96,6 +96,9 @@ public class Player : MonoBehaviour
         }
         
         _lives--;
+
+        _ui_Manager.UpdateLives(_lives);
+
         if (_lives < 1)
         {
             _spawnManager.OnPlayerDeath();
