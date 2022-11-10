@@ -5,6 +5,13 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float _speed = 4f;
 
+    private Player _player;
+
+    private void Start()
+    {
+        _player = GameObject.Find("Player").GetComponent<Player>();
+    }
+
     void Update()
     {
         CalculateMovement();
@@ -39,7 +46,11 @@ public class Enemy : MonoBehaviour
 
         {
             Destroy(other.gameObject);
-
+            if (_player != null)
+            {
+                _player.AddScore(10);
+            }
+                      
             //add 10 to score 
             Destroy(this.gameObject);
         }
