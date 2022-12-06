@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -86,7 +87,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void Damage ()
+    public void Damage()
     {
         if (_shieldActive == true)
         {
@@ -104,6 +105,8 @@ public class Player : MonoBehaviour
             _spawnManager.OnPlayerDeath();
             Destroy(this.gameObject);
         }
+
+
     }
 
     public void TripleShotACtive()
@@ -142,7 +145,6 @@ public class Player : MonoBehaviour
             _speedBoostActive = false;
             _speed /= _speedBoost;
         }
-
     }
 
 
@@ -152,7 +154,4 @@ public class Player : MonoBehaviour
         _ui_Manager.UpdateScore(_score);
     }
 
-
-    //method to add 10 to score 
-    //Communicate to UI to update the score
 }
