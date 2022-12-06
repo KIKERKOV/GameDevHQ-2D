@@ -3,41 +3,13 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField]
-    private float _speed = 1f;
-    private Player _player;
-    private Animator _deathAnimation;
-    private AnimationClip _onEnemyDeath;
-    private float _deathAnimationTime;
+    private float _speed = 4f;
 
-    // handle to animator compontent
+    private Player _player;
 
     private void Start()
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
-
-        if (_player == null)
-        {
-            Debug.LogError("The Player is NULL");
-        }
-
-        _onEnemyDeath = GetComponent<AnimationClip>();
-
-        if (_onEnemyDeath == null)
-        {
-            Debug.LogError("Animation is NULL");
-        }
-
-
-        _deathAnimation = GetComponent<Animator>();
-
-
-        if (_deathAnimation == null)
-        {
-            Debug.LogError("Animator is NULL");
-        }
-
-
-        // assign compontent to Anim
     }
 
     void Update()
@@ -45,7 +17,7 @@ public class Enemy : MonoBehaviour
         CalculateMovement();
     }
 
-    public void CalculateMovement()
+    void CalculateMovement()
     {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
 
@@ -67,11 +39,7 @@ public class Enemy : MonoBehaviour
             {
                 player.Damage();
             }
-
-            _deathAnimation.SetTrigger("OnEnemyDeath");
-
-            // trigger anim
-            Destroy(this.gameObject, _deathAnimationTime);
+            Destroy(this.gameObject);
         }
 
         if (other.tag == "Laser")
@@ -82,10 +50,9 @@ public class Enemy : MonoBehaviour
             {
                 _player.AddScore(10);
             }
-
-            _deathAnimation.SetTrigger("OnEnemyDeath");
-            // trigger anim
-            Destroy(this.gameObject, _deathAnimationTime);
+                      
+            //add 10 to score 
+            Destroy(this.gameObject);
         }
 
     }
